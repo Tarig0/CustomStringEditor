@@ -1,0 +1,15 @@
+﻿@model CustomStringEditorInNullModel.Models.ParentModel
+@{
+    ViewData["Title"] = "Home Page";
+    //This is only so that the visitedObjects doesn't get populated with the string type
+    CustomStringEditorInNullModel.Models.ModelWithCustomStringEditor template = null;
+}
+<input asp-for="Name"/>
+
+
+<h2>Template to be cloned by javascript, using a string expression that resolves to nothing</h2>
+@Html.Editor("notinViewState", "ModelWithCustomStringEditor")
+
+<br/>
+<h2>Template to be cloned by javascript, using a lambda that is referencing a local variable</h2>
+@Html.EditorFor(m=> template)

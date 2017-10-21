@@ -1,0 +1,13 @@
+﻿@model CustomStringEditorInNullModel.Models.ModelWithCustomStringEditor
+@using System.Reflection
+@{
+    var fieldinfo = ViewData.TemplateInfo.GetType().GetField("_visitedObjects", BindingFlags.NonPublic| BindingFlags.Instance);
+    var t = (IEnumerable<dynamic>)fieldinfo.GetValue(ViewData.TemplateInfo);
+}
+@t.First().Name &lt;-This should be ModelWithCustomStringEditor which is the declared type of this editor
+    <div>
+        @Html.EditorFor(m=>m.SectionedKey)
+    </div>
+<div>
+    <input asp-for="hello" />
+</div>
